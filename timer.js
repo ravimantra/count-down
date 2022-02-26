@@ -3,15 +3,15 @@ class Timer {
       root.innerHTML = Timer.getHTML();
   
       this.el = {
-        hours: root.querySelector(".timer__part--hour"),
-        minutes: root.querySelector(".timer__part--minutes"),
-        seconds: root.querySelector(".timer__part--seconds"),
-        control: root.querySelector(".timer__btn--control"),
-        reset: root.querySelector(".timer__btn--reset")
+        hours: root.querySelector(".timer-hour"),
+        minutes: root.querySelector(".timer-minutes"),
+        seconds: root.querySelector(".timer-seconds"),
+        control: root.querySelector(".timer-btn-control"),
+        reset: root.querySelector(".timer-btn-reset")
       };
   
       this.interval = null;
-      this.remainingSeconds = 0;
+      this.remainingSeconds = 60;
   
       this.el.control.addEventListener("click", () => {
         if (this.interval === null) {
@@ -23,8 +23,8 @@ class Timer {
   
       this.el.reset.addEventListener("click", () => {
         this.stop();
-        this.remainingSeconds = 60 * 60;
-        this.updateInterfaceTime();
+        this.remainingSeconds = 60;
+        this.setCount(0, 60);
       });
     }
   
@@ -36,6 +36,10 @@ class Timer {
       if (seconds === 0) {
         this.stop();
       }
+      this.setCount(minutes, seconds);
+    }
+
+    setCount (minutes, seconds) {
       // document.documentElement.style.setProperty('--loadingSize', minutes);
       document.documentElement.style.setProperty('--loadingSize', seconds);
       // this.el.hours.textContent = hour.toString().padStart(2, "0");
@@ -45,19 +49,18 @@ class Timer {
   
     updateInterfaceControls() {
       if (this.interval === null) {
-        this.el.control.innerHTML = `<span class="material-icons">play_arrow</span>`;
-        this.el.control.classList.add("timer__btn--start");
-        this.el.control.classList.remove("timer__btn--stop");
+        this.el.control.innerHTML = `Play`;
+        this.el.control.classList.add("timer-start");
+        this.el.control.classList.remove("timer-stop");
       } else {
-        this.el.control.innerHTML = `<span class="material-icons">pause</span>`;
-        this.el.control.classList.add("timer__btn--stop");
-        this.el.control.classList.remove("timer__btn--start");
+        this.el.control.innerHTML = `Pause`;
+        this.el.control.classList.add("timer-stop");
+        this.el.control.classList.remove("timer-start");
       }
     }
   
     start() {
-      if (this.remainingSeconds === 0) return;
-  
+      // if (this.remainingSeconds === 60) this.remainingSeconds--;
       this.interval = setInterval(() => {
         this.remainingSeconds--;
         this.updateInterfaceTime();
@@ -80,21 +83,25 @@ class Timer {
   
     static getHTML() {
       return `
-              <span class="timer__part timer__part--hour">00</span>
-              <span class="timer__part">:</span>
-              <span class="timer__part timer__part--minutes">00</span>
-              <span class="timer__part">:</span>
-              <span class="timer__part timer__part--seconds">00</span>
-              <button type="button" class="timer__btn timer__btn--control timer__btn--start">
-                  <span class="material-icons">play_arrow</span>
-              </button>
-              <button type="button" class="timer__btn timer__btn--reset">
-                  <span class="material-icons">timer</span>
-              </button>
+              <div class="digital-time flex-box">
+                <span class="timer-hour">00</span>
+                <span>:</span>
+                <span class="timer-minutes">00</span>
+                <span>:</span>
+                <span class="timer-seconds">00</span>
+              </div>
+              <div class="action-buttons flex-box">
+              <div type="button" class="timer-btn timer-btn-control timer-btn-start">
+                  Start
+              </div>
+              <div type="button" class="timer-btn timer-btn-reset">
+                  Reset
+              </div>
+              </div>
           `;
     }
   }
   
   new Timer(
-      document.querySelector(".timer")
+      document.querySelector("#timer")
   );

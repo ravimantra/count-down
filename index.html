@@ -1,28 +1,42 @@
 <html>
     <head>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <title>Count down</title>
         <link href="./timer.css" rel="stylesheet">
     </head>
     <body onload="resizeClock()">
-        <main class="container">
-            <div class="box">
+        <div class="container flex-box">
+            <div class="analog">
                 <svg class="clock-container">
                     <circle class="clock-shape"></circle>
                     <circle class="clock-shape main-circle"></circle>
                 </svg>
-                <!-- <div class="content">
-                    <span class="time hour">
-                        12
-                    </span>
-                    <b class="colon">:</b>
-                    <span class="time min">
-                        00
-                    </span>
-                </div> -->
             </div>
-        </main>
-        <div class="timer"></div>
+            <div id="timer"></div>
+        </div>
         <script src="./timer.js"></script>
         <script src="./app.js"></script>
+        <script>
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+            import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-analytics.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+
+            // Your web app's Firebase configuration
+            // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+            const firebaseConfig = {
+                apiKey: "AIzaSyAWwpO1BJtr0ogv0cTcdEeGU86JsVXH0lw",
+                authDomain: "count-down-analog.firebaseapp.com",
+                projectId: "count-down-analog",
+                storageBucket: "count-down-analog.appspot.com",
+                messagingSenderId: "76382175878",
+                appId: "1:76382175878:web:c6e687069060729c378707",
+                measurementId: "G-BPP7DR38MF"
+            };
+
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const analytics = getAnalytics(app);
+        </script>
     </body>
 </html>

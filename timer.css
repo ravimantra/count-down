@@ -1,77 +1,31 @@
 body {
-  background: #dddddd;
-  margin: 24px;
-}
-
-.timer {
+  background-color: #36096d;
+  background-image: linear-gradient(315deg, #36096d 0%, #37d5d6 74%);
   font-family: sans-serif;
-  display: inline-block;
-  padding: 24px 32px;
-  border-radius: 30px;
-  background: white;
-}
-
-.timer__part {
-  font-size: 36px;
-  font-weight: bold;
-}
-
-.timer__btn {
-  width: 50px;
-  height: 50px;
-  margin-left: 16px;
-  border-radius: 50%;
-  border: none;
-  color: white;
-  background: #8208e6;
-  cursor: pointer;
-}
-
-.timer__btn--start {
-  background: #00b84c;
-}
-
-.timer__btn--stop {
-  background: #ff0256;
 }
 
 :root {
   --clockSize: 30rem;
   --bgColor: #111;
-  --mainColor: #37f;
-  --loadingSize: 0;
-  --dashArray: 876;
+  --mainColor: #000000;
+  --loadingSize: 60;
+  --dashArray: 875;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.flex-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 html {
   font-size: 62.5%;
 }
 
-body {
-  background: var(--bgColor);
-  font-family: "DS-DIGI", sans-serif;
-}
-
 .container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
+  flex-direction: column;
   min-height: 100vh;
-}
-
-.box {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  margin-top: 10rem;
 }
 
 .clock-container {
@@ -80,15 +34,12 @@ body {
   padding: 0;
   width: var(--clockSize);
   height: var(--clockSize);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .clock-shape {
   fill: transparent;
   stroke-width: calc(var(--clockSize) * 0.05);
-  stroke: rgba(255, 255, 255, 0.1);
+  stroke: #ffffff;
   stroke-dasharray: var(--dashArray);
   stroke-dashoffset: 0;
   stroke-linecap: round;
@@ -102,19 +53,6 @@ body {
   );
 }
 
-.content {
-  color: var(--mainColor);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 5.5rem;
-}
-
-.sec {
-  animation: secAnimation 1s infinite;
-}
-
 @keyframes secAnimation {
   from {
     opacity: 0;
@@ -125,23 +63,34 @@ body {
   }
 }
 
-footer {
-  color: #fff;
-  margin-top: 20rem;
-  font-size: 2rem;
+.digital-time {
+  width: var(--clockSize);
+  margin: 70px 0 50px 0;
+  font-size: 36px;
+  font-weight: bold;
+  color: #ffffff;
 }
 
-.link {
-  color: var(--mainColor);
-  text-decoration: none;
+.action-buttons {
+  width: var(--clockSize);
+  justify-content: space-around;
 }
 
-@media (max-width: 300px) {
+.timer-btn {
+  padding: 10px 20px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 700px) {
   html {
     font-size: 40.5%;
   }
 
   :root {
-    --dashArray: 565;
+    --dashArray: 1400;
   }
 }
