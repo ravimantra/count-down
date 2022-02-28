@@ -49,18 +49,8 @@ html {
 .main-circle {
   stroke: var(--mainColor);
   stroke-dashoffset: calc(
-    var(--dashArray) - (var(--dashArray) * (var(--loadingSize) / 60))
+    (var(--dashArray) * (var(--loadingSize) / 60)) - var(--dashArray)
   );
-}
-
-@keyframes secAnimation {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 }
 
 .digital-time {
@@ -85,11 +75,15 @@ html {
   cursor: pointer;
 }
 
+.not-active {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 @media (max-width: 700px) {
   html {
     font-size: 40.5%;
   }
-
   :root {
     --dashArray: 565;
   }
